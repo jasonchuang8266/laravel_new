@@ -6,10 +6,11 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class ExampleTest extends TestCase
+class ThreadsTest extends TestCase
 {
     use DatabaseMigrations;
-    public function testBasicTest()
+    /** @test  */
+    public function thisismytest()
     {
         $thread = factory('App\Thread')->create();
 
