@@ -9,16 +9,39 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 class ThreadsTest extends TestCase
 {
     use DatabaseMigrations;
-    /** @test  */
-    public function thisismytest()
-    {
-        $thread = factory('App\Thread')->create();
 
-        $response = $this->get('/threads');
-        $response->assertSee($thread->title);
-        
-        $response = $this->get('/threads/' . $thread->id);
-        $response->assertSee($thread->title);
+    public function setup()
+    {
+        parent::setUp();
+
+        $this->thread = factory('App\Thread')->create();
+    }
+    /** @test  */
+    public function test_all_threads()
+    {
+
+        $response = $this->get('/threads')
+            ->assertSee($this->thread->title);
+    }
+
+    /** @test  */
+    public function test_single_thread()
+    {
+
+        $this->get('/threads/' . $this->thread->id)
+            ->assertSee($this->thread->title);
         
     }
+    
+    /** @test  */
+    
+    public function reply_test()
+    {
+        $reply=factory('App\Reply')->create(['thread_id'=> $this->thread->id]);
+
+        $this->get('/threads/' . $this->thread->id)
+            ->assertSee($reply->body);
+        
+    }
+    
 }
