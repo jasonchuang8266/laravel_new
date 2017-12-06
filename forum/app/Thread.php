@@ -22,4 +22,9 @@ class Thread extends Model
     public function addReply($reply){
         $this->replies()->create($reply);
     }
+
+    public function store(Request $request)
+    {
+        dd($request->all());
+    }
 }
