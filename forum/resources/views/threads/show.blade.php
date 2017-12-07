@@ -29,7 +29,7 @@
                 <form method="POST" action="{{ $thread->path().'/replies'}}">
                     {{csrf_field()}}
                     <div class="form-group">
-                        <textarea name="body" id="body" class="form-contorl" row="5" placeholder="text something cool"></textarea>
+                        <textarea name="body" id="body" class="form-control" row="5" placeholder="text something cool"></textarea>
                     </div>
                     <button type="submit" class="btn btn-default">Post</button>
                 </form>
