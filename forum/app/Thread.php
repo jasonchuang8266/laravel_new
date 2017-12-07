@@ -8,7 +8,8 @@ class Thread extends Model
 {
     protected $guarded = [];
     public function path(){
-        return '/threads/' . $this->id;
+        return "/threads/{$this->channel->slug}/{$this->id}";
+        //return '/threads/' .$this->channel->slug.'/'. $this->id;
     }
         
     public function replies(){
@@ -23,8 +24,8 @@ class Thread extends Model
         $this->replies()->create($reply);
     }
 
-    public function store(Request $request)
+    public function channel()
     {
-        dd($request->all());
+        return $this->belongsTo(Channel::class);
     }
 }

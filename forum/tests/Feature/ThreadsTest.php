@@ -16,6 +16,7 @@ class ThreadsTest extends TestCase
 
         $this->thread = factory('App\Thread')->create();
     }
+
     /** @test  */
     public function test_all_threads()
     {
